@@ -1,0 +1,38 @@
+<html>
+  <body>
+    <div id="example">
+      <script>
+        class Example extends HTMLElement {
+          constructor() {
+            super();
+            const shadow = this.attachShadow({ mode: "open" });
+
+            const button = document.createElement("button");
+            button.onclick = () => alert("Hi");
+            button.innerText = "Hello";
+            shadow.append(button);
+          }
+        }
+        customElements.define("my-component", Example);
+      </script>
+
+      <div><my-component></my-component></div>
+      <script>
+        const notFound = document.querySelector("button");
+        console.log({ notFound });
+
+        const buttonFound = document
+          .querySelector("my-component")
+          .shadowRoot.querySelector("button");
+        console.log({ buttonFound });
+      </script>
+    </div>
+    <pre>
+      <code id="code">
+      </code>
+    </pre>
+    <script>
+      code.innerText = example.innerHTML;
+    </script>
+  </body>
+</html>
